@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://sbarqb1nlfxu"]
+
+[ext_resource type="Script" uid="uid://80evy8db4vwj" path="res://scripts/engine/EngineLogic.cs" id="1_tonxd"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_tonxd")
