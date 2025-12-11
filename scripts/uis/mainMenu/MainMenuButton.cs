@@ -4,6 +4,7 @@ using System;
 public partial class MainMenuButton : Control
 {
 	private ColorRect screenTransition;
+	private bool alreadyCliked = false;
 
 	public override void _Ready()
 	{
@@ -14,6 +15,8 @@ public partial class MainMenuButton : Control
 
 	public void OnButtonCliked(String name)
 	{
+		if (alreadyCliked) {return; }
+		alreadyCliked = true;
 		switch (name)
 		{
 			case "ButtonNewGame":
@@ -29,7 +32,7 @@ public partial class MainMenuButton : Control
 				ButtonExitCliked();
 				break;
 			default:
-				GD.Print("defalut");
+				alreadyCliked = false;
 				break;
 		}
 	}
