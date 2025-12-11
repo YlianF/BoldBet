@@ -68,4 +68,5 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_2wx8y")
 
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="resized" from="TextSubViewport/TextLabel" to="." method="onTextLabelResized"]
