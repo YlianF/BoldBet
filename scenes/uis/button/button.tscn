@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://blkyvrkn7ybhx"]
+
+[ext_resource type="Script" uid="uid://o1u0vqomw61" path="res://scripts/uis/button/DynamiqueButton.gd" id="1_2wx8y"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_k2dhe"]
+viewport_path = NodePath("TextSubViewport")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2wx8y"]
+bg_color = Color(0.66729987, 0.58694744, 0.49877584, 1)
+
+[node name="Button" type="Control" node_paths=PackedStringArray("texture_rect", "label")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 346.83127
+offset_bottom = 33.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_2wx8y")
+autoResizeOnTextChange = false
+texture_rect = NodePath("TextDisplay")
+label = NodePath("TextSubViewport/TextLabel")
+expand_mode = 3
+stretch_mode = 5
+text = "Azea"
+horizontal_alignment = 1
+
+[node name="TextDisplay" type="TextureRect" parent="."]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_k2dhe")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextSubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1102, 163)
+
+[node name="TextLabel" type="Label" parent="TextSubViewport"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -91.5
+offset_right = 1.0
+offset_bottom = 83.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 128
+text = "Azea"
+horizontal_alignment = 1
+visible_characters_behavior = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2wx8y")
+
+[connection signal="resized" from="TextSubViewport/TextLabel" to="." method="onTextLabelResized"]

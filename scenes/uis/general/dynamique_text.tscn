@@ -1,18 +1,23 @@
 [gd_scene load_steps=3 format=3 uid="uid://d3njapxqdav08"]
 
-[ext_resource type="Script" path="res://sripts/uis/general/DynamiqueText.gd" id="1_jh6m6"]
+[ext_resource type="Script" uid="uid://bedkmxtypw212" path="res://scripts/uis/general/DynamiqueText.gd" id="1_jh6m6"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bad4g"]
 viewport_path = NodePath("TextSubViewport")
 
-[node name="TextDynamique" type="Control"]
+[node name="TextDynamique" type="Control" node_paths=PackedStringArray("texture_rect", "label")]
+custom_minimum_size = Vector2(317.77777, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 671.0
 offset_bottom = 108.0
 mouse_filter = 2
 script = ExtResource("1_jh6m6")
-visible_ratio = 0.0
+texture_rect = NodePath("TextDisplay")
+label = NodePath("TextSubViewport/TextLabel")
+expand_mode = 5
+stretch_mode = 5
+text = "Azeaze"
 
 [node name="TextDisplay" type="TextureRect" parent="."]
 layout_mode = 1

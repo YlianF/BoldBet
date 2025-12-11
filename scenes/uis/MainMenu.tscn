@@ -1,16 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0vxame8yaxi8"]
+[gd_scene load_steps=3 format=3 uid="uid://c0vxame8yaxi8"]
 
 [ext_resource type="PackedScene" uid="uid://d3njapxqdav08" path="res://scenes/uis/general/dynamique_text.tscn" id="1_1y05o"]
+[ext_resource type="PackedScene" uid="uid://blkyvrkn7ybhx" path="res://scenes/uis/button/button.tscn" id="2_t7jse"]
 
-[node name="MainMenu" type="Control"]
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="MainMenu" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Background" type="Control" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.15487596, 0.154876, 0.15487596, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,11 +41,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleZone" type="Control" parent="VBoxContainer"]
+[node name="TitleZone" type="Control" parent="MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextDynamique" parent="VBoxContainer/TitleZone" instance=ExtResource("1_1y05o")]
+[node name="TextDynamique" parent="MainMenu/VBoxContainer/TitleZone" instance=ExtResource("1_1y05o")]
+custom_minimum_size = Vector2(858.4294, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,43 +55,91 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+text = "BoldBet"
+horizontal_alignment = 1
 
-[node name="ButtonZone" type="HBoxContainer" parent="VBoxContainer"]
+[node name="ButtonZone" type="HBoxContainer" parent="MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 1.5
 
-[node name="1" type="Control" parent="VBoxContainer/ButtonZone"]
+[node name="1" type="Control" parent="MainMenu/VBoxContainer/ButtonZone"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MainMenuButton" type="Control" parent="VBoxContainer/ButtonZone"]
+[node name="MainMenuButton" type="Control" parent="MainMenu/VBoxContainer/ButtonZone"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/ButtonZone/MainMenuButton"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/VBoxContainer/ButtonZone/MainMenuButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 
-[node name="1" type="Control" parent="VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer"]
+[node name="1" type="Control" parent="MainMenu/VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
-[node name="Button" type="Control" parent="VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer"]
+[node name="ButtonNewGame" parent="MainMenu/VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer" instance=ExtResource("2_t7jse")]
+layout_mode = 2
+size_flags_stretch_ratio = 6.0
+mouse_default_cursor_shape = 6
+expand_mode = 5
+text = "New Game"
+
+[node name="2" type="Control" parent="MainMenu/VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
-[node name="2" type="Control" parent="VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer"]
+[node name="ButtonContinue" parent="MainMenu/VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer" instance=ExtResource("2_t7jse")]
+layout_mode = 2
+size_flags_stretch_ratio = 6.0
+expand_mode = 5
+text = "Continue"
+
+[node name="3" type="Control" parent="MainMenu/VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 
-[node name="2" type="Control" parent="VBoxContainer/ButtonZone"]
+[node name="ButtonSettings" parent="MainMenu/VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer" instance=ExtResource("2_t7jse")]
+layout_mode = 2
+size_flags_stretch_ratio = 6.0
+expand_mode = 5
+text = "Settings"
+
+[node name="4" type="Control" parent="MainMenu/VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ButtonExit" parent="MainMenu/VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer" instance=ExtResource("2_t7jse")]
+layout_mode = 2
+size_flags_stretch_ratio = 6.0
+expand_mode = 5
+text = "Exit"
+
+[node name="5" type="Control" parent="MainMenu/VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+mouse_filter = 2
+
+[node name="2" type="Control" parent="MainMenu/VBoxContainer/ButtonZone"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[connection signal="gui_input" from="MainMenu/VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer/ButtonNewGame" to="MainMenu/VBoxContainer/ButtonZone/MainMenuButton/VBoxContainer/ButtonNewGame" method="_on_gui_input"]
