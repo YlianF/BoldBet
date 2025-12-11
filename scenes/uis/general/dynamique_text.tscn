@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3njapxqdav08"]
+
+[ext_resource type="Script" path="res://sripts/uis/general/DynamiqueText.gd" id="1_jh6m6"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bad4g"]
+viewport_path = NodePath("TextSubViewport")
+
+[node name="TextDynamique" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 671.0
+offset_bottom = 108.0
+mouse_filter = 2
+script = ExtResource("1_jh6m6")
+visible_ratio = 0.0
+
+[node name="TextDisplay" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_bad4g")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="TextSubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(1102, 163)
+
+[node name="TextLabel" type="Label" parent="TextSubViewport"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = -91.5
+offset_right = 1.0
+offset_bottom = 83.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 128
+text = "Azeaze"
+visible_characters_behavior = 1
+
+[connection signal="resized" from="TextDisplay" to="." method="onTextDisplayResized"]
+[connection signal="resized" from="TextSubViewport/TextLabel" to="." method="onTextLabelResized"]
