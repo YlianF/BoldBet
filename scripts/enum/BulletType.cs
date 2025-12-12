@@ -6,5 +6,6 @@ namespace BoldBet.Enum;
 enum BulletType
 {
     Death,
-    Blank
+    Blank,
+    Combo
 }

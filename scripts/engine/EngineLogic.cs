@@ -7,13 +7,17 @@ using BoldBet.Enum;
 namespace BoldBet.Engine;
 public partial class EngineLogic : Node, ISaveable
 {
-    private int Gold = 0;
-    private int BoldPoints = 0;
+    private float Gold = 0;
+    private float BoldPoints = 0;
 
     [Export] private int CylinderSize = 4;
     private Godot.Collections.Array<BulletType> Cylinder = [];
+    [Export] private int SpecialBulletsNb = 1;
+    private Godot.Collections.Array<BulletType> SpecialBullets = [BulletType.Death, BulletType.Combo];
     private int ShotsTaken = 0;
-    private float BaseCombo = 1.0f;
+    [Export] private float BaseCombo = 1.0f;
+    [Export] private float ComboMult = 0.2f;
+    private float CurrentCombo = 1.0f;
 
 
     // Bool pour savoir si la save doit etre charger à Instantiate
@@ -30,6 +34,7 @@ public partial class EngineLogic : Node, ISaveable
             GD.Print("Load game complete");
 		}
         
+        CurrentCombo = BaseCombo;
         LoadRevolver();
     }
 
@@ -46,14 +51,25 @@ public partial class EngineLogic : Node, ISaveable
     private void LoadRevolver() {
         Cylinder.Resize(CylinderSize);
         Cylinder.Fill(BulletType.Blank);
-        LoadBullet(BulletType.Death);
+        LoadBullet(SpecialBullets);
+        Shuffle(Cylinder);
         GD.Print(Cylinder);
     }
 
-    private void LoadBullet(BulletType BulletType) {
+    private void LoadBullet(Godot.Collections.Array<BulletType> Bullets) {
+        for (int i=0; i<Bullets.Count; i++) {
+            Cylinder[i] = Bullets[i];
+        }
+    }
+
+    private void Shuffle (Godot.Collections.Array<BulletType> Cylinder) {
         Random rnd = new Random();
-        int Bullet  = rnd.Next(0, CylinderSize);
-        Cylinder[Bullet] = BulletType;
+        for (int i = Cylinder.Count; i > 1; i--) {
+            int pos = rnd.Next(i);
+            var x = Cylinder[i - 1];
+            Cylinder[i - 1] = Cylinder[pos];
+            Cylinder[pos] = x;
+        }
     }
 
     private void Shoot() {
@@ -65,7 +81,7 @@ public partial class EngineLogic : Node, ISaveable
     private void Die() {
         CalculateCombo();
         LoadRevolver();
-        BaseCombo = 1.0f;
+        CurrentCombo = BaseCombo;
         ShotsTaken = 0;
     }
 
@@ -73,21 +89,22 @@ public partial class EngineLogic : Node, ISaveable
         if (bullet == BulletType.Death) {
             GD.Print("die");
             Die();
-        } else if (bullet == BulletType.Blank)
-        {
-            BaseCombo = BaseCombo + 0.1f;
+        } else if (bullet == BulletType.Blank) {
             ShotsTaken++;
+            CurrentCombo = CurrentCombo + ComboMult * ShotsTaken;
+        } else if (bullet == BulletType.Combo) {
+            ShotsTaken++;
+            CurrentCombo = CurrentCombo * 2;
         }
     }
 
     private void CalculateCombo() {
-        float Combo = BaseCombo * 100;
-        int NewGold =  ShotsTaken * (int) Combo;
-        int NewBoldPoints =  ShotsTaken * (int) Combo;
+        float NewGold =  ShotsTaken * CurrentCombo;
+        float NewBoldPoints =  ShotsTaken * CurrentCombo;
 
         Gold = Gold + NewGold;
         BoldPoints = BoldPoints + NewBoldPoints;
-        GD.Print(Combo);
+        GD.Print(CurrentCombo);
         GD.Print(BoldPoints);
     }
 
