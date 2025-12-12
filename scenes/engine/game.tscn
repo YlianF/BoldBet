@@ -20,4 +20,4 @@ offset_right = 171.0
 offset_bottom = 50.0
 text = "Save"
 
-[connection signal="pressed" from="CanvasLayer/Button" to="." method="OnButtonSavePressed"]
+[connection signal="pressed" from="CanvasLayer/Button" to="EngineLogic" method="OnButtonSavePressed"]

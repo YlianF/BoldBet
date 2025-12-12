@@ -110,6 +110,7 @@ public partial class EngineLogic : Node
 
     public void OnButtonSavePressed()
 	{
+        GD.Print("Save start");
 		saveManager.SaveGame();
         GD.Print("Save game complete");
 	}

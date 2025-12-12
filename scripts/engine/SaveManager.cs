@@ -11,13 +11,6 @@ public partial class SaveManager : Node
 		var saveNodes = GetTree().GetNodesInGroup("Saveable");
 		foreach (Node saveNode in saveNodes)
 		{
-			// Check the node is an instanced scene so it can be instanced again during load.
-			if (string.IsNullOrEmpty(saveNode.SceneFilePath))
-			{
-				GD.Print($"persistent node '{saveNode.Name}' is not an instanced scene, skipped");
-				continue;
-			}
-
 			// Check the node has a save function.
 			if (!saveNode.HasMethod("Save"))
 			{
