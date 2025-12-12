@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+
+namespace BoldBet.Engine.Save;
 public partial class SaveManager : Node
 {
 	public const string savePath = "user://game.save";
@@ -11,15 +13,15 @@ public partial class SaveManager : Node
 		var saveNodes = GetTree().GetNodesInGroup("Saveable");
 		foreach (Node saveNode in saveNodes)
 		{
-			// Check the node has a save function.
-			if (!saveNode.HasMethod("Save"))
+			// Check the node is a ISaveable Object
+			if (saveNode is not ISaveable saveObject)
 			{
-				GD.Print($"persistent node '{saveNode.Name}' is missing a Save() function, skipped");
+				GD.Print($"persistent node '{saveNode.Name}' is not ISaveable object, skipped");
 				continue;
 			}
 
 			// Call the node's save function.
-			var nodeData = saveNode.Call("Save");
+			var nodeData = saveObject.Save();
 
 			// Json provides a static method to serialized JSON string.
 			var jsonString = Json.Stringify(nodeData);

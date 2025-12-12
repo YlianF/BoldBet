@@ -1,7 +1,11 @@
 using Godot;
 using System;
+using BoldBet.Engine.Save;
+using BoldBet.Enum;
 
-public partial class EngineLogic : Node
+
+namespace BoldBet.Engine;
+public partial class EngineLogic : Node, ISaveable
 {
     private int Gold = 0;
     private int BoldPoints = 0;
@@ -93,19 +97,16 @@ public partial class EngineLogic : Node
 
 
 
-    public Godot.Collections.Dictionary<string, Godot.Collections.Dictionary<string, Variant>> Save()
+    public Godot.Collections.Dictionary<string, Variant> SaveObject()
     {
-        return new Godot.Collections.Dictionary<string, Godot.Collections.Dictionary<string, Variant>>()
+        return new Godot.Collections.Dictionary<string, Variant>()
         {
-            { Name,
-                new Godot.Collections.Dictionary<string, Variant>()
-                {
-                    { "Gold", Gold },
-                    { "BoldPoints", BoldPoints },
-                    { "CylinderSize", CylinderSize },
-                }
-            }
+            { "Gold", Gold },
+            { "BoldPoints", BoldPoints },
+            { "CylinderSize", CylinderSize },
         };
+            
+        
     }
 
     public void OnButtonSavePressed()

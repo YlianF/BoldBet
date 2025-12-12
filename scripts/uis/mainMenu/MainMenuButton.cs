@@ -1,6 +1,9 @@
+using BoldBet.Engine;
 using Godot;
 using System;
 
+
+namespace BoldBet.Uis.MainMenu;
 public partial class MainMenuButton : Control
 {
 	//Scene à load
