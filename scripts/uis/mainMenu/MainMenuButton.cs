@@ -3,6 +3,11 @@ using System;
 
 public partial class MainMenuButton : Control
 {
+	//Scene à load
+	[Export] PackedScene gameScene;
+	[Export] PackedScene settingsScene;
+
+	//
 	private ColorRect screenTransition;
 	private bool alreadyCliked = false;
 
@@ -83,18 +88,32 @@ public partial class MainMenuButton : Control
 	private void CreateNewGame()
 	{
 		GD.Print("New Game");
+
 		// Load Game Scene
+		var newScene = gameScene.Instantiate();
+		GetTree().Root.AddChild(newScene);
+		
 		// Create New save
+
 		// QueueFree()
+		GetTree().CurrentScene.QueueFree();
+		GetTree().CurrentScene = newScene;
 	}
 
 	private void LoadGame()
 	{
 		GD.Print("Load Game");
+
 		// Load Game Scene
+		var newScene = gameScene.Instantiate<Node>();
+		newScene.GetNode<EngineLogic>("%EngineLogic").needLoad = true;
+		GetTree().Root.AddChild(newScene);
+		
 		// Load save
 		// Put save in Game Scene
 		// QueueFree()
+		GetTree().CurrentScene.QueueFree();
+		GetTree().CurrentScene = newScene;
 	}
 
 	private void LoadSetting()

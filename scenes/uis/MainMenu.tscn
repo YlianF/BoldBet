@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c0vxame8yaxi8"]
+[gd_scene load_steps=5 format=3 uid="uid://c0vxame8yaxi8"]
 
 [ext_resource type="PackedScene" uid="uid://d3njapxqdav08" path="res://scenes/uis/general/dynamique_text.tscn" id="1_1y05o"]
 [ext_resource type="Script" uid="uid://bwnj6qbqhav2l" path="res://scripts/uis/mainMenu/MainMenuButton.cs" id="2_bwt1b"]
 [ext_resource type="PackedScene" uid="uid://blkyvrkn7ybhx" path="res://scenes/uis/button/button.tscn" id="2_t7jse"]
+[ext_resource type="PackedScene" uid="uid://sbarqb1nlfxu" path="res://scenes/engine/game.tscn" id="3_8itwl"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -84,6 +85,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 script = ExtResource("2_bwt1b")
+gameScene = ExtResource("3_8itwl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/VBoxContainer/ButtonZone/MainMenuButton"]
 layout_mode = 1
