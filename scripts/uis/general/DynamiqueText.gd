@@ -86,6 +86,9 @@ func _ready():
 func set_text(s: String):
 	label.text = s
 
+func set_text_from_int(s: int):
+	label.text = str(s)
+
 
 
 func set_font_color(color: Color):

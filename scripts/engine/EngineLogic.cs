@@ -8,7 +8,19 @@ namespace BoldBet.Engine;
 public partial class EngineLogic : Node, ISaveable
 {
     private int Gold = 0;
-    private int BoldPoints = 0;
+
+
+    private int boldPoints = 0;
+    public int BoldPoints
+    {
+        get => boldPoints;
+        set
+        {
+            boldPoints = value;
+            EmitSignal(SignalName.boldPointsChange, value);
+        }
+    }
+    [Signal] public delegate void boldPointsChangeEventHandler(int value);
 
     [Export] private int CylinderSize = 4;
     private Godot.Collections.Array<BulletType> Cylinder = [];
