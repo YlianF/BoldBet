@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://sbarqb1nlfxu"]
+[gd_scene load_steps=3 format=3 uid="uid://sbarqb1nlfxu"]
 
 [ext_resource type="Script" uid="uid://80evy8db4vwj" path="res://scripts/engine/EngineLogic.cs" id="1_tonxd"]
+[ext_resource type="Script" uid="uid://cm321milahfcv" path="res://scripts/engine/SaveManager.cs" id="2_p7m6r"]
 
 [node name="Game" type="Node2D"]
+
+[node name="EngineLogic" type="Node" parent="." groups=["Saveable"]]
+unique_name_in_owner = true
 script = ExtResource("1_tonxd")
+
+[node name="SaveManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_p7m6r")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 171.0
+offset_bottom = 50.0
+text = "Save"
+
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="OnButtonSavePressed"]

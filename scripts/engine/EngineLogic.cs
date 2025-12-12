@@ -11,7 +11,21 @@ public partial class EngineLogic : Node
     private int ShotsTaken = 0;
     private float BaseCombo = 1.0f;
 
+
+    // Bool pour savoir si la save doit etre charger à Instantiate
+    public bool needLoad = false;
+    private SaveManager saveManager;
+    
+    
     public override void _Ready() {
+
+        saveManager = GetNode<SaveManager>("%SaveManager");
+        if (needLoad)
+		{
+			saveManager.LoadGame();
+            GD.Print("Load game complete");
+		}
+        
         LoadRevolver();
     }
 
@@ -72,4 +86,31 @@ public partial class EngineLogic : Node
         GD.Print(Combo);
         GD.Print(BoldPoints);
     }
+
+
+
+
+
+
+
+    public Godot.Collections.Dictionary<string, Godot.Collections.Dictionary<string, Variant>> Save()
+    {
+        return new Godot.Collections.Dictionary<string, Godot.Collections.Dictionary<string, Variant>>()
+        {
+            { Name,
+                new Godot.Collections.Dictionary<string, Variant>()
+                {
+                    { "Gold", Gold },
+                    { "BoldPoints", BoldPoints },
+                    { "CylinderSize", CylinderSize },
+                }
+            }
+        };
+    }
+
+    public void OnButtonSavePressed()
+	{
+		saveManager.SaveGame();
+        GD.Print("Save game complete");
+	}
 }
