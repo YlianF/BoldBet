@@ -17,7 +17,7 @@
 [node name="UpgradeManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_5663i")
-upgradesList = Array[Object]([ExtResource("2_aur1y"), ExtResource("3_ysdga"), ExtResource("4_mddhm"), ExtResource("5_iy3mx"), ExtResource("6_fb6qm")])
+upgradeResourceList = Array[Object]([ExtResource("2_aur1y"), ExtResource("3_ysdga"), ExtResource("4_mddhm"), ExtResource("5_iy3mx"), ExtResource("6_fb6qm")])
 upgradeItemScene = ExtResource("5_02qi2")
 
 [node name="EngineLogic" type="Node" parent="." groups=["Saveable"]]
