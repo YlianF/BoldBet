@@ -4,6 +4,14 @@
 
 [resource]
 script = ExtResource("1_55j63")
-Property = "GoldMultiplier"
-Cost = 10
+Property = "GoldReward"
+BaseCost = 25
+CostPerLevel = 2.5
+CostOperation = 1
+UpgradePerLevel = 100.0
+LevelMax = 20
+Title = "GOLD increase"
+Description = "Increases the amount of GOLD gained when you survive a round.
+
+"
 metadata/_custom_type_script = "uid://cfvltryp658fr"

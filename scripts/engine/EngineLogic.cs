@@ -8,6 +8,7 @@ namespace BoldBet.Engine;
 public partial class EngineLogic : Node, ISaveable
 {
     private float Gold = 0;
+    [Export] private float GoldReward = 0.0f;
     private float boldPoints = 0;
     public float BoldPoints
     {
@@ -18,6 +19,8 @@ public partial class EngineLogic : Node, ISaveable
             EmitSignal(SignalName.boldPointsChange, value);
         }
     }
+    [Export] private float BoldPointsMult = 1.0f;
+
     [Signal] public delegate void boldPointsChangeEventHandler(int value);
 
     [Export] private int CylinderSize = 4;
@@ -115,8 +118,8 @@ public partial class EngineLogic : Node, ISaveable
     }
 
     private void CalculateCombo() {
-        float NewGold =  ShotsTaken * CurrentCombo;
-        float NewBoldPoints =  ShotsTaken * CurrentCombo;
+        float NewGold = GoldReward * ShotsTaken * CurrentCombo;
+        float NewBoldPoints = BoldPointsMult * ShotsTaken * CurrentCombo;
 
         if (!IsDead) {
            Gold = Gold + NewGold;

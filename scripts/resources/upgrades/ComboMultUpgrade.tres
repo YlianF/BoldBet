@@ -4,4 +4,14 @@
 
 [resource]
 script = ExtResource("1_yhpkk")
+Property = "ComboMult"
+BaseCost = 100
+CostPerLevel = 2.0
+CostOperation = 1
+BaseUpgrade = 0.2
+UpgradePerLevel = 0.1
+LevelMax = 18
+Title = "Bullet combo increase"
+Description = "Increases your combo when firing bullets.
+Just pray that the next one is a blank..."
 metadata/_custom_type_script = "uid://cfvltryp658fr"

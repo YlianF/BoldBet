@@ -4,4 +4,14 @@
 
 [resource]
 script = ExtResource("1_rojgp")
+Property = "CylinderSize"
+BaseCost = 100
+CostPerLevel = 5.0
+CostOperation = 1
+BaseUpgrade = 4.0
+UpgradePerLevel = 1.0
+LevelMax = 8
+Title = "Cylinder upgrade"
+Description = "Adds one slot to your cylinder.
+Less chance of dying, right ?"
 metadata/_custom_type_script = "uid://cfvltryp658fr"
