@@ -6,7 +6,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1vh3"]
 bg_color = Color(0, 0.63719076, 0.9496513, 1)
 
-[node name="DescriptionPanel" type="PanelContainer" node_paths=PackedStringArray("description_title_text", "stat_zone", "current_stat_text", "preview_stat_text")]
+[node name="DescriptionPanel" type="PanelContainer" node_paths=PackedStringArray("description_title_text", "description_text", "stat_zone", "current_stat_text", "preview_stat_text")]
 anchors_preset = -1
 anchor_left = 0.043
 anchor_top = 0.09
@@ -21,6 +21,7 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_k1vh3")
 script = ExtResource("1_7fq3m")
 description_title_text = NodePath("MarginContainer/VBoxContainer/TitleZone/DescriptionTitleText")
+description_text = NodePath("MarginContainer/VBoxContainer/DescriptionText")
 stat_zone = NodePath("MarginContainer/VBoxContainer/StatZone")
 current_stat_text = NodePath("MarginContainer/VBoxContainer/StatZone/CurrentStatText")
 preview_stat_text = NodePath("MarginContainer/VBoxContainer/StatZone/PreviewStatText")
@@ -63,6 +64,7 @@ fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
 horizontal_alignment = 3
+justification_flags = 35
 
 [node name="StatZone" type="Control" parent="MarginContainer/VBoxContainer"]
 visible = false

@@ -4,4 +4,12 @@
 
 [resource]
 script = ExtResource("1_jqmnx")
+BaseCost = 20
+CostPerLevel = 1.3
+CostOperation = 1
+BaseUpgrade = 1.2
+UpgradePerLevel = 0.1
+DecimalPlaces = 1
+Title = "Combo Upgrade"
+Description = "Upgrade Combo value"
 metadata/_custom_type_script = "uid://cfvltryp658fr"

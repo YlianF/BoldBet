@@ -15,6 +15,7 @@ public partial class UpgradeResource : Resource
 
     [Export] public float BaseUpgrade;
     [Export] public float UpgradePerLevel;
+    [Export] public DecimalPlacesEnum DecimalPlaces;
     [Export] public int LevelMax;
 
     [ExportSubgroup("Upgrade Info")]

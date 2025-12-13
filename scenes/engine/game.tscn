@@ -1,12 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://sbarqb1nlfxu"]
+[gd_scene load_steps=12 format=3 uid="uid://sbarqb1nlfxu"]
 
 [ext_resource type="Script" uid="uid://80evy8db4vwj" path="res://scripts/engine/EngineLogic.cs" id="1_tonxd"]
+[ext_resource type="Resource" uid="uid://dbu14xcqcgq8k" path="res://scripts/resources/upgrades/BaseComboUpgrade.tres" id="2_aur1y"]
 [ext_resource type="Script" uid="uid://cm321milahfcv" path="res://scripts/engine/save/SaveManager.cs" id="2_p7m6r"]
+[ext_resource type="Script" uid="uid://dqgmnnk7nuytx" path="res://scripts/engine/UpgradeManager.cs" id="3_5663i"]
 [ext_resource type="Texture2D" uid="uid://t23pfofhkjul" path="res://sprites/interfaceIdee.png" id="3_nxqrq"]
+[ext_resource type="Resource" uid="uid://cpyewkt1shk5n" path="res://scripts/resources/upgrades/BPUpgrade.tres" id="3_ysdga"]
 [ext_resource type="PackedScene" uid="uid://d3njapxqdav08" path="res://scenes/uis/general/dynamique_text.tscn" id="4_02qi2"]
+[ext_resource type="Resource" uid="uid://btm3nl27jbswc" path="res://scripts/resources/upgrades/ComboMultUpgrade.tres" id="4_mddhm"]
 [ext_resource type="PackedScene" uid="uid://bsfc0ddsuqq48" path="res://scenes/uis/game/upgrade/UpgradeItem.tscn" id="5_02qi2"]
+[ext_resource type="Resource" uid="uid://xyb7mapaicax" path="res://scripts/resources/upgrades/CylinderUpgrade.tres" id="5_iy3mx"]
+[ext_resource type="Resource" uid="uid://dclkvg1ye4kuj" path="res://scripts/resources/upgrades/GoldUpgrade.tres" id="6_fb6qm"]
 
 [node name="Game" type="Node2D"]
+
+[node name="UpgradeManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_5663i")
+upgradesList = Array[Object]([ExtResource("2_aur1y"), ExtResource("3_ysdga"), ExtResource("4_mddhm"), ExtResource("5_iy3mx"), ExtResource("6_fb6qm")])
+upgradeItemScene = ExtResource("5_02qi2")
 
 [node name="EngineLogic" type="Node" parent="." groups=["Saveable"]]
 unique_name_in_owner = true
@@ -104,12 +116,12 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 mouse_filter = 2
 
-[node name="LevelUpZone" type="Control" parent="CanvasLayer/Control/HBoxContainer"]
+[node name="UpgradeZone" type="Control" parent="CanvasLayer/Control/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="Control" type="Control" parent="CanvasLayer/Control/HBoxContainer/LevelUpZone"]
+[node name="Control" type="Control" parent="CanvasLayer/Control/HBoxContainer/UpgradeZone"]
 layout_mode = 1
 anchor_right = 1.0
 anchor_bottom = 0.07700001
@@ -117,7 +129,7 @@ offset_bottom = 0.10399628
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/HBoxContainer/LevelUpZone/Control"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/HBoxContainer/UpgradeZone/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -125,7 +137,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="ScrollContainer" parent="CanvasLayer/Control/HBoxContainer/LevelUpZone"]
+[node name="UpgradeScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/HBoxContainer/UpgradeZone"]
 clip_contents = false
 layout_mode = 1
 anchors_preset = -1
@@ -138,7 +150,18 @@ grow_vertical = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
 
-[node name="UpgradeItem" parent="CanvasLayer/Control/HBoxContainer/LevelUpZone/VBoxContainer" instance=ExtResource("5_02qi2")]
+[node name="UpgradeConaitner" type="VBoxContainer" parent="CanvasLayer/Control/HBoxContainer/UpgradeZone/UpgradeScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="UpgradeItem" parent="CanvasLayer/Control/HBoxContainer/UpgradeZone/UpgradeScrollContainer/UpgradeConaitner" instance=ExtResource("5_02qi2")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UpgradeItem2" parent="CanvasLayer/Control/HBoxContainer/UpgradeZone/UpgradeScrollContainer/UpgradeConaitner" instance=ExtResource("5_02qi2")]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 3

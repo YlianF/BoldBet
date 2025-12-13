@@ -137,10 +137,12 @@ anchor_right = 0.92
 anchor_bottom = 0.82000005
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
+mouse_filter = 1
 text = "BUY"
 
 [node name="DescriptionPanel" parent="." instance=ExtResource("3_xhut8")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchor_left = -0.14
 anchor_top = -0.333

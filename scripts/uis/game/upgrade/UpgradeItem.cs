@@ -1,3 +1,5 @@
+using BoldBet.Enum;
+using BoldBet.Resources;
 using Godot;
 using System;
 
@@ -20,6 +22,20 @@ public partial class UpgradeItem : Control
 		descriptionPanel = GetNode<PanelContainer>("%DescriptionPanel");
 
 		descriptionPanel.Hide();
+	}
+
+
+	public void Init(UpgradeResource upgradeResource)
+	{
+		titleText.Set("text", upgradeResource.Title);
+		descriptionPanel.Call("set_title_text", upgradeResource.Title);
+		descriptionPanel.Call("set_text", upgradeResource.Description);
+
+		string currentStat = FormatDecimalPlaces.Formater(upgradeResource.BaseUpgrade, upgradeResource.DecimalPlaces);
+		string previewtStat = FormatDecimalPlaces.Formater(upgradeResource.BaseUpgrade + upgradeResource.UpgradePerLevel, upgradeResource.DecimalPlaces);
+		descriptionPanel.Call("set_current_stat_text", currentStat);
+		descriptionPanel.Call("set_preview_stat_text", (upgradeResource.BaseUpgrade + upgradeResource.UpgradePerLevel).ToString("0.0"));
+
 	}
 
 
