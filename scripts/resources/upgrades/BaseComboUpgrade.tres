@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=2 format=3 uid="uid://dbu14xcqcgq8k"]
+
+[ext_resource type="Script" uid="uid://cfvltryp658fr" path="res://scripts/resources/UpgradeResource.cs" id="1_jqmnx"]
+
+[resource]
+script = ExtResource("1_jqmnx")
+metadata/_custom_type_script = "uid://cfvltryp658fr"

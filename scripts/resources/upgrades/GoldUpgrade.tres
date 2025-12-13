@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="UpgradeResource" load_steps=2 format=3 uid="uid://dclkvg1ye4kuj"]
+
+[ext_resource type="Script" uid="uid://cfvltryp658fr" path="res://scripts/resources/UpgradeResource.cs" id="1_55j63"]
+
+[resource]
+script = ExtResource("1_55j63")
+Property = "GoldMultiplier"
+Cost = 10
+metadata/_custom_type_script = "uid://cfvltryp658fr"

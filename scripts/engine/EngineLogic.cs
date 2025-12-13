@@ -71,7 +71,7 @@ public partial class EngineLogic : Node, ISaveable
             Cylinder[pos] = x;
         }
     }
-
+    
     private void Shoot() {
         if (ShotsTaken < CylinderSize) {
             BulletHandler(Cylinder[ShotsTaken]);
