@@ -8,8 +8,6 @@ namespace BoldBet.Engine;
 public partial class EngineLogic : Node, ISaveable
 {
     private float Gold = 0;
-
-
     private float boldPoints = 0;
     public float BoldPoints
     {
@@ -30,6 +28,7 @@ public partial class EngineLogic : Node, ISaveable
     [Export] private float BaseCombo = 1.0f;
     [Export] private float ComboMult = 0.2f;
     private float CurrentCombo = 1.0f;
+    private bool IsDead = false;
 
 
     // Bool pour savoir si la save doit etre charger à Instantiate
@@ -55,8 +54,11 @@ public partial class EngineLogic : Node, ISaveable
             Shoot();
         }
 
-        if (Input.IsActionJustPressed("reload")) {
+        if (Input.IsActionJustPressed("reload") && ShotsTaken != 0) {
+            CalculateCombo();
             LoadRevolver();
+            CurrentCombo = BaseCombo;
+            ShotsTaken = 0;
         }
     }
 
@@ -91,10 +93,12 @@ public partial class EngineLogic : Node, ISaveable
     }
 
     private void Die() {
+        IsDead = true;
         CalculateCombo();
         LoadRevolver();
         CurrentCombo = BaseCombo;
         ShotsTaken = 0;
+        IsDead = false;
     }
 
     private void BulletHandler(BulletType bullet) {
@@ -114,32 +118,24 @@ public partial class EngineLogic : Node, ISaveable
         float NewGold =  ShotsTaken * CurrentCombo;
         float NewBoldPoints =  ShotsTaken * CurrentCombo;
 
-        Gold = Gold + NewGold;
+        if (!IsDead) {
+           Gold = Gold + NewGold;
+        }
+        
         BoldPoints = BoldPoints + NewBoldPoints;
-        GD.Print(CurrentCombo);
+        GD.Print(Gold);
         GD.Print(BoldPoints);
     }
 
-
-
-
-
-
-
-    public Godot.Collections.Dictionary<string, Variant> SaveObject()
-    {
-        return new Godot.Collections.Dictionary<string, Variant>()
-        {
+    public Godot.Collections.Dictionary<string, Variant> SaveObject() {
+        return new Godot.Collections.Dictionary<string, Variant>() {
             { "Gold", Gold },
             { "BoldPoints", BoldPoints },
             { "CylinderSize", CylinderSize },
         };
-            
-        
     }
 
-    public void OnButtonSavePressed()
-	{
+    public void OnButtonSavePressed() {
         GD.Print("Save start");
 		saveManager.SaveGame();
         GD.Print("Save game complete");
